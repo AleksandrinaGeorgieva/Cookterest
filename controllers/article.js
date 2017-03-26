@@ -43,5 +43,68 @@ module.exports = {
             .then(article => {
                 res.render('article/details', article);
             });
+    },
+
+    editGet: (req, res) => {
+        let id = req.params.id;
+
+        Article.findById(id)
+            .then(article => {
+                res.render('article/edit', article);
+            });
+    },
+
+    editPost: (req, res) => {
+        let id = req.params.id;
+
+        let articleArgs = req.body;
+
+        let errorMsg = '';
+        if(!articleArgs.title){
+            errorMsg = 'Article title cannot be empty!';
+        }else if(!articleArgs.content){
+            errorMsg = 'Article content cannot be empty!';
+        }
+
+        if(errorMsg){
+            res.render('article/edit', {error: errorMsg});
+        }else{
+            Article.update({_id:id}, {$set: {title: articleArgs.title, content: articleArgs.content}})
+                .then(updateStatus => {
+                    res.redirect('/article/details/${id}');
+                });
+        }
+    },
+
+    deleteGet: (req, res) => {
+        let id = req.params.id;
+
+        Article.findById(id)
+            .then(article => {
+                res.render('article/delete', article);
+            });
+    },
+
+    deletePost: (req, res) => {
+        let id = req.params.id;
+        Article.findOneAndRemove({_id: id})
+            .populate('author')
+            .then(article => {
+                let author = article.author;
+
+                let index = author.articles.indexOf(article.id);
+
+                if(index < 0){
+                    let errorMsg = 'Article was not found for that author!';
+                    res.render('article/delete', {error: errorMsg});
+                }else{
+                    let count = 1;
+                    author.articles.splice(index, count);
+                    author.save()
+                        .then(user => {
+                            res.redirect('/');
+                        });
+                }
+            })
     }
 };
