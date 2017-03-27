@@ -14,7 +14,10 @@ module.exports = (config) => {
         console.log('MongoDB ready!')
     });
 
+    require('./../models/Role').initialize();
     require('./../models/User');
+//    require('./../models/User').seedAdmin();
+
     require('./../models/Article');
 };
 
