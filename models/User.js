@@ -69,10 +69,12 @@ userSchema.method ({
     }
 });
 
+userSchema.set('versionKey', false);
+
 const User = mongoose.model('User', userSchema);
 module.exports = User;
 module.exports.seedAdmin = () => {
-    let email = 'alex.dm1@gmail.com';
+    let email = 'admin@admin.com';
     User.findOne({email: email})
         .then(admin => {
             if(!admin){
