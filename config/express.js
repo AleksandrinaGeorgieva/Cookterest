@@ -29,7 +29,11 @@ module.exports = (app, config) => {
             res.locals.user = req.user;
             req.user.isInRole('Admin').then(isAdmin => {
                 res.locals.isAdmin = isAdmin;
-                next();
+                req.user.getRecipes().then(recipes => {
+                    res.locals.user.recipes = recipes;
+                    next();
+                });
+                //next();
             });
         }else{
             next();

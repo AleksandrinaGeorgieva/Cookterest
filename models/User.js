@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Role = require('mongoose').model('Role');
+const Recipe = require('mongoose').model('Recipe');
 const encryption = require('./../utilities/encryption');
 
 let userSchema = mongoose.Schema(
@@ -33,7 +34,7 @@ userSchema.method ({
     isInRole: function (roleName) {
         return Role.findOne({name: roleName})
             .then(role => {
-                if(!role){
+                if (!role) {
                     return false;
                 }
 
@@ -66,6 +67,13 @@ userSchema.method ({
                 role.save();
             });
         }
+    },
+
+    getRecipes: function (){
+       return Recipe.find({author: this.id})
+            .then(recipes => {
+                return recipes;
+            });
     }
 });
 

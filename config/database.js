@@ -15,10 +15,11 @@ module.exports = (config) => {
     });
 
     require('./../models/Role').initialize();
+    require('./../models/Recipe');
     require('./../models/User');
     require('./../models/User').seedAdmin();
 
-    require('./../models/Recipe');
+
     require('./../models/Category');
 };
 
