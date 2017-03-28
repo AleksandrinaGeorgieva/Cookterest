@@ -47,7 +47,7 @@ html {
 body {
   margin: 0;
 }
-article,
+recipe,
 aside,
 details,
 figcaption,
@@ -7044,15 +7044,15 @@ a.list-group-item-danger.active:focus {
 .popover {
   color: #2c3e50;
 }
-article .author {
+recipe .author {
   margin-bottom: 0;
 }
-article .author  {
+recipe .author  {
   display: block;
   font-size: 100%;
   line-height: 1.42857143;
   color: #b4bcc2;
 }
-article .author  {
+recipe .author  {
   content: '\2014 \00A0';
 }

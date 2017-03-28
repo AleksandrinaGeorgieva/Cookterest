@@ -7,7 +7,7 @@ let userSchema = mongoose.Schema(
         email: {type: String, required: true, unique: true},
         passwordHash: {type: String, required: true},
         fullName: {type: String, required: true},
-        articles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Article'}],
+        recipes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'}],
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
         salt: {type: String, required: true}
     }
@@ -21,12 +21,12 @@ userSchema.method ({
        return isSamePasswordHash;
    },
 
-    isAuthor: function (article){
-       if(!article){
+    isAuthor: function (recipe){
+       if(!recipe){
            return false;
        }
 
-       let isAuthor = article.author.equals(this.id);
+       let isAuthor = recipe.author.equals(this.id);
        return isAuthor;
     },
 
@@ -50,11 +50,11 @@ userSchema.method ({
             });
         }
 
-        let Article = mongoose.model('Article');
-        for(let article of this.articles){
-            Article.findById(article).then(article => {
-                article.prepareDelete();
-                article.remove();
+        let Recipe = mongoose.model('Recipe');
+        for(let recipe of this.recipes){
+            Recipe.findById(recipe).then(recipe => {
+                recipe.prepareDelete();
+                recipe.remove();
             });
         }
     },
@@ -90,7 +90,7 @@ module.exports.seedAdmin = () => {
                             email: email,
                             passwordHash: passwordHash,
                             fullName: 'Admin',
-                            articles: [],
+                            recipes: [],
                             salt: salt,
                             roles: roles
                         };

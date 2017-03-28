@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Article = mongoose.model('Article');
+const Recipe = mongoose.model('Recipe');
 const User = mongoose.model('User');
 const Category = mongoose.model('Category');
 
@@ -11,16 +11,16 @@ module.exports = {
           });
   },
 
-    listCategoryArticles: (req, res) => {
+    listCategoryRecipes: (req, res) => {
       let id = req.params.id;
 
-      Category.findById(id).populate('articles').then(category => {
-          User.populate(category.articles, {path: 'author'}, (err) => {
+      Category.findById(id).populate('recipes').then(category => {
+          User.populate(category.recipes, {path: 'author'}, (err) => {
               if(err){
                   console.log(err.message);
               }
 
-              res.render('home/article', {articles: category.articles});
+              res.render('home/recipe', {recipes: category.recipes});
           });
       })
     }

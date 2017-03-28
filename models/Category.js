@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 
 let categorySchema = mongoose.Schema({
     name: {type: String, required: true, unique: true},
-    articles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Article'}]
+    recipes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'}]
 });
 
 categorySchema.method({
     prepareDelete: function (){
-        let Article = mongoose.model('Article');
-        for(let article of this.articles){
-            Article.findById(article).then(article => {
-                article.prepareDelete();
-                article.remove();
+        let Recipe = mongoose.model('Recipe');
+        for(let recipe of this.recipes){
+            Recipe.findById(recipe).then(recipe => {
+                recipe.prepareDelete();
+                recipe.remove();
             })
         }
     }

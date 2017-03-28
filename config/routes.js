@@ -1,11 +1,11 @@
 const userController = require('./../controllers/user');
 const homeController = require('./../controllers/home');
-const articleController = require('./../controllers/article');
+const recipeController = require('./../controllers/recipe');
 const adminController = require('./../controllers/admin/admin');
 
 module.exports = (app) => {
     app.get('/', homeController.index);
-    app.get('/category/:id', homeController.listCategoryArticles);
+    app.get('/category/:id', homeController.listCategoryRecipes);
 
     app.get('/user/register', userController.registerGet);
     app.post('/user/register', userController.registerPost);
@@ -13,16 +13,16 @@ module.exports = (app) => {
     app.get('/user/login', userController.loginGet);
     app.post('/user/login', userController.loginPost);
 
-    app.get('/article/create', articleController.createGet);
-    app.post('/article/create', articleController.createPost);
+    app.get('/recipe/create', recipeController.createGet);
+    app.post('/recipe/create', recipeController.createPost);
 
-    app.get('/article/details/:id', articleController.details);
+    app.get('/recipe/details/:id', recipeController.details);
 
-    app.get('/article/edit/:id', articleController.editGet);
-    app.post('/article/edit/:id', articleController.editPost);
+    app.get('/recipe/edit/:id', recipeController.editGet);
+    app.post('/recipe/edit/:id', recipeController.editPost);
 
-    app.get('/article/delete/:id', articleController.deleteGet);
-    app.post('/article/delete/:id', articleController.deletePost);
+    app.get('/recipe/delete/:id', recipeController.deleteGet);
+    app.post('/recipe/delete/:id', recipeController.deletePost);
 
     app.get('/user/logout', userController.logout);
 

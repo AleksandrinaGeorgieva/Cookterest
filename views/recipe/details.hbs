@@ -1,26 +1,26 @@
 <!--<div class="container body-content">-->
     <!--<div class="row">-->
         <div class="col-md-9">
-            <article>
+            <recipe>
                 <header>
-                    <h2>{{article.title}}</h2>
+                    <h2>{{recipe.title}}</h2>
                 </header>
                 <p>
-                    {{article.content}}
+                    {{recipe.content}}
                 </p>
                 <small class="author">
-                    {{article.author.fullName}}
+                    {{recipe.author.fullName}}
                 </small>
                 <footer>
                     <div class="pull-right">
                         {{#if isUserAuthorized}}
-                        <a class="btn btn-success btn-xs" href="/article/edit/{{article.id}}">Edit &raquo;</a>
-                        <a class="btn btn-danger btn-xs" href="/article/delete/{{article.id}}">Delete &raquo;</a>
+                        <a class="btn btn-success btn-xs" href="/recipe/edit/{{recipe.id}}">Edit &raquo;</a>
+                        <a class="btn btn-danger btn-xs" href="/recipe/delete/{{recipe.id}}">Delete &raquo;</a>
                         {{/if}}
                         <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
                     </div>
                 </footer>
-            </article>
+            </recipe>
          </div>
     <!--</div>-->
 <!--</div>-->
