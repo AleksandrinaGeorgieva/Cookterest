@@ -6,6 +6,7 @@
     <link rel='stylesheet' href='/stylesheets/sidebar.css'/>
     <script src="/javascripts/jquery-1.10.2.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
+
 </head>
 <body>
 <header>
@@ -36,6 +37,7 @@
 
                         <li><a href="/user/details">Welcome({{user.email}})</a></li>
                         <li><a href="/recipe/create">New Recipe</a></li>
+                        <li><a href="/cookbook/view">My cook book</a></li>
                         <li><a href="/user/logout">Logout</a></li>
                     </ul>
                 </div>
@@ -74,7 +76,7 @@
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
-                        <button type="button" class="btn btn-success btn-sm">Follow</button>
+                        <button type="button" class="btn btn-success btn-sm" onclick="location.href='/recipe/create';">New recipe</button>
                         <button type="button" class="btn btn-danger btn-sm">Message</button>
                     </div>
                     <!-- END SIDEBAR BUTTONS -->

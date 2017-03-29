@@ -2,6 +2,7 @@ const userController = require('./../controllers/user');
 const homeController = require('./../controllers/home');
 const recipeController = require('./../controllers/recipe');
 const adminController = require('./../controllers/admin/admin');
+const cookBookController = require('./../controllers/cookbook');
 
 module.exports = (app) => {
     app.get('/', homeController.index);
@@ -23,6 +24,8 @@ module.exports = (app) => {
 
     app.get('/recipe/delete/:id', recipeController.deleteGet);
     app.post('/recipe/delete/:id', recipeController.deletePost);
+
+    app.get('/cookbook/view', cookBookController.view);
 
     app.get('/user/logout', userController.logout);
 
