@@ -18,6 +18,34 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label class="col-sm-4 control-label" for="recipeIngredients">Ingredients</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="recipeIngredients" rows="5" name="ingredients" disabled>
+                            {{ingredients}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="recipeDirections">Directions</label>
+                    <div class="col-sm-6">
+                        <textarea class="form-control" id="recipeDirections" rows="5" name="directions" disabled>
+                            {{directions}}
+                        </textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="recipePrepTime">Preparation time</label>
+                    <div class="col-sm-6">
+                        <input type="number" name="prepTime" min="1" max="200" disabled value="{{prepTime}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" for="recipeCookTime">Cooking time</label>
+                    <div class="col-sm-6">
+                        <input type="number" name="cookTime" min="1" max="200" disabled value="{{cookTime}}">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-sm-4 control-label"
                            for="recipeContent">Category</label>
                     <div class="col-sm-6">

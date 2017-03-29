@@ -27,6 +27,14 @@ module.exports = {
             errorMsg = 'Invalid title!';
         }else if(!recipeArgs.content){
             errorMsg = 'Invalid content!';
+        }else if(!recipeArgs.ingredients){
+            errorMsg = 'Invalid indredients!';
+        }else if(!recipeArgs.directions){
+            errorMsg = 'Invalid directions!';
+        }else if(!recipeArgs.prepTime){
+            errorMsg = 'Invalid preparation time'
+        }else if(!recipeArgs.cookTime){
+            errorMsg = 'Invalid cooking time!';
         }
 
         if(errorMsg){
@@ -92,7 +100,7 @@ module.exports = {
                         })
                     });
 
-                res.render('recipe/edit', recipe);
+               // res.render('recipe/edit', recipe);
             });
 
     },
@@ -112,12 +120,14 @@ module.exports = {
         if(errorMsg){
             res.render('recipe/edit', {error: errorMsg});
         }else{
+
             // Recipe.update({_id:id}, {$set: {title: recipeArgs.title, content: recipeArgs.content}})
             //     .then(updateStatus => {
             //         res.redirect('/');
             //         //res.redirect('/recipe/details/${id}');
             //     });
-            Recipe.findById(id).populate('category').then(recipe => {
+             Recipe.findById(id).populate('category').then(recipe => {
+                 //res.redirect('/');
                 if(recipe.category.id !== recipeArgs.category){
                     recipe.category.recipes.remove(recipe.id);
                     recipe.category.save();
@@ -126,8 +136,13 @@ module.exports = {
                 recipe.category = recipeArgs.category;
                 recipe.title = recipeArgs.title;
                 recipe.content = recipeArgs.content;
+                recipe.ingredients = recipeArgs.ingredients;
+                recipe.directions = recipeArgs.directions;
+                recipe.prepTime = recipeArgs.prepTime;
+                recipe.cookTime = recipeArgs.cookTime;
 
                 recipe.save((err) => {
+
                     if(err){
                         console.log(err.message);
                     }
@@ -137,11 +152,11 @@ module.exports = {
                             category.recipes.push(recipe.id);
                             category.save();
                         }
-
-                        res.redirect('/recipe.details/${id}');
-                    })
-                })
-            })
+                    });
+                    //res.redirect('/recipe/details/${id}');
+                });
+                 res.redirect('/');
+             });
         }
     },
 
