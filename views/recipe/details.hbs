@@ -2,15 +2,78 @@
     <!--<div class="row">-->
         <div class="col-md-9">
             <recipe>
-                <header>
-                    <h2>{{recipe.title}}</h2>
-                </header>
-                <p>
-                    {{recipe.content}}
-                </p>
-                <small class="author">
-                    {{recipe.author.fullName}}
-                </small>
+                <img src="/images/blueberry-cheesecake.jpeg" class="img-responsive">
+                <div class="row placeholders bar-quickStats">
+
+                    <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
+                        <!--img class="iconStats" src="/images/prepTime.jpeg"-->
+                        <span class="glyphicon glyphicon-time"></span>
+                        <h5>Preparation Time</h5>
+                        <span>{{recipe.prepTime}}</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
+                        <img class="iconStats" src="/images/prepTime.jpeg">
+                        <h5>Preparation Time</h5>
+                        <span>{{recipe.prepTime}}</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
+                        <img class="iconStats" src="/images/prepTime.jpeg">
+                        <h5>Preparation Time</h5>
+                        <span>{{recipe.prepTime}}</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
+                        <img class="iconStats" src="/images/prepTime.jpeg">
+                        <h5>Preparation Time</h5>
+                        <span>{{recipe.prepTime}}</span>
+                    </div>
+
+                </div><!-- Quick Stats -->
+                <div class="col-xs-6 col-sm-3">
+                    <h4>Ingridients</h4>
+                    <table class="table-sideline">
+                        <tbody>
+                        <tr>
+                            <td>qnty</td>
+                            <td>ingridient</td>
+                        </tr>
+                        <tr>
+                            <td>qnty</td>
+                            <td>ingridient</td>
+                        </tr>
+                        <tr>
+                            <td>qnty</td>
+                            <td>ingridient</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <span>......</span>
+                    <h4>Nutrition</h4>
+                    <table class="table-sideline">
+                        <tbody>
+                        <tr>
+                            <td>qnty</td>
+                            <td>ingridient</td>
+                        </tr>
+                        <tr>
+                            <td>qnty</td>
+                            <td>ingridient</td>
+                        </tr>
+                        <tr>
+                            <td>qnty</td>
+                            <td>ingridient</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div><!-- Ingridients / Nutrition -->
+                <div class="col-xs-12 col-sm-9">
+                    <h2 class="title-recipie">{{recipe.title}}</h2>
+                    <p>{{recipe.content}}</p>
+                </div>
+                <div class="row">
+                    <small class="author">
+                        {{recipe.author.fullName}}
+                    </small>
+                </div>
                 <footer>
                     <div class="pull-right">
                         {{#if isUserAuthorized}}
