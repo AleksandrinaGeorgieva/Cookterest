@@ -18,7 +18,20 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="recipeIngredients">Ingredients</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" id="recipeIngredients" rows="5" name="ingredients" required>{{ingredients}}</textarea>
+                        <!--textarea class="form-control" id="recipeIngredients" rows="5" name="ingredients" required>{{ingredients}}</textarea-->
+                        <div class="row">
+                            <label class="col-sm-3 control-label" for="recipeIngredients">Quantity</label>
+                            <label class="col-sm-3 control-label" for="recipeIngredients">Name</label>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <textarea class="form-control" id="recipeIngredientQnty" rows="1" name="ingredientQnty" required>{{ingredientQnty}}</textarea>
+                            </div>
+                            <div class="col-sm-5">
+                                <textarea class="form-control" id="recipeIngredientName" rows="1" name="ingredientName" required>{{ingredientName}}</textarea>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary btn-sm">Add +</button>
                     </div>
                 </div>
                 <div class="form-group">
