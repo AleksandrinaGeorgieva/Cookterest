@@ -2,18 +2,17 @@
     <!--<div class="row">-->
         <div class="col-md-9">
             <recipe>
-                <img src="/images/blueberry-cheesecake.jpeg" class="img-responsive">
+                <img src="/images/blueberry-cheesecake.jpeg" class="top-image-recipe img-responsive">
                 <div class="row placeholders bar-quickStats">
 
                     <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
-                        <!--img class="iconStats" src="/images/prepTime.jpeg"-->
-                        <span class="glyphicon glyphicon-time"></span>
-                        <h5>Preparation Time</h5>
+                        <img class="iconStats" src="/images/prepTime.jpeg">
+                        <h6>Preparation Time</h6>
                         <span>{{recipe.prepTime}}</span>
                     </div>
                     <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
                         <img class="iconStats" src="/images/prepTime.jpeg">
-                        <h5>Preparation Time</h5>
+                        <h6>Cooking Time</h6>
                         <span>{{recipe.prepTime}}</span>
                     </div>
                     <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
@@ -28,6 +27,12 @@
                     </div>
 
                 </div><!-- Quick Stats -->
+                <div class="row">
+                    <div class="col-xs-6 col-sm-3"></div>
+                    <div class="col-xs-12 col-sm-9">
+                        <h2 class="title-recipie">{{recipe.title}}</h2>
+                    </div>
+                </div>
                 <div class="col-xs-6 col-sm-3">
                     <h4>Ingridients</h4>
                     <table class="table-sideline">
@@ -66,7 +71,7 @@
                     </table>
                 </div><!-- Ingridients / Nutrition -->
                 <div class="col-xs-12 col-sm-9">
-                    <h2 class="title-recipie">{{recipe.title}}</h2>
+
                     <p>{{recipe.content}}</p>
                 </div>
                 <div class="row">
