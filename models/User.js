@@ -71,6 +71,7 @@ userSchema.method ({
 
     getRecipes: function (){
        return Recipe.find({author: this.id})
+           .populate('author')
             .then(recipes => {
                 return recipes;
             });

@@ -243,9 +243,10 @@
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
-	font-size: 20px;
+	font-size: 50px;
 	line-height: 30px;
 	display: inline-block;
+	position: absolute;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -263,6 +264,10 @@
 .bb-custom-icon-first:before {
 	-webkit-transform: rotate(180deg);
 	transform: rotate(180deg);
+	left: 10px;
+}
+.bb-custom-icon-arrow-right:before {
+	right: 10px;
 }
 
 /* No JS */
@@ -287,3 +292,31 @@
 	vertical-align: top;
 }
 
+
+.cookbook-nav-buttons{
+	position: absolute;
+	width: 15%;
+	height: 110%;
+	z-index: 101;
+	opacity: 0.2;
+	cursor: pointer;
+}
+.bb-custom-icon::before{
+	top: 45%;
+}
+.cookbook-nav-buttons:hover{
+	opacity: 0.4;
+}
+.cookbook-prev-button{
+	background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+}
+.cookbook-next-button{
+	background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+	right: 0;
+}
