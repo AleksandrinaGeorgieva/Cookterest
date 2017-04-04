@@ -8,6 +8,10 @@ module.exports = (app) => {
     app.get('/', homeController.index);
     app.get('/category/:id', homeController.listCategoryRecipes);
 
+    app.get('/user/view_profile/:id', userController.profileGet);
+    app.get('/user/edit_profile/:id', userController.editProfileGet);
+    app.post('/user/edit_profile/:id', userController.editProfilePost);
+
     app.get('/user/register', userController.registerGet);
     app.post('/user/register', userController.registerPost);
 

@@ -1,0 +1,27 @@
+<div class="well">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="profile-userpic">
+                <img src="/images/user.jpeg" class="img-responsive" alt="">
+            </div>
+        </div>
+
+        <div class="col-md-7">
+            <h3>{{ user.fullName }}</h3>
+            <h6>Email: {{ user.email }}</h6>
+        </div>
+
+        <div class="col-md-2">
+            <div class="btn-group">
+                <a class="btn dropdown-toggle btn-info" data-toggle="dropdown" href="#">
+                    Action
+                    <span class="icon-cog icon-white"></span><span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/user/edit_profile/{{user.id}}"><span class="icon-wrench"></span> Modify</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

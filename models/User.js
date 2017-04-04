@@ -75,6 +75,10 @@ userSchema.method ({
             .then(recipes => {
                 return recipes;
             });
+    },
+
+    isAllowedToEditProfile: function(profileId){
+        return profileId == this.id;
     }
 });
 

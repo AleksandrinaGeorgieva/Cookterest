@@ -91,5 +91,64 @@ module.exports = {
     logout: (req, res) => {
         req.logOut();
         res.redirect('/');
+    },
+
+    profileGet: (req, res) => {
+        let id = req.params.id;
+
+        User.findById(id).then(user => {
+            res.render('user/view_profile', {user: user});
+        });
+    },
+
+    editProfileGet: (req, res) => {
+        let id = req.params.id;
+
+        if(!req.user.isAllowedToEditProfile(id)){
+            res.redirect('/');
+            return;
+        }
+
+        User.findById(id).then(user => {
+            res.render('user/edit_profile', {user: user});
+        });
+    },
+
+    editProfilePost: (req, res) => {
+        let id = req.params.id;
+        let userArgs = req.body;
+
+        User.findOne({email: userArgs.email, _id: {$ne: id}}).then(user => {
+            let errorMsg = '';
+
+            if(user){
+                errorMsg = 'User with the same username exists!';
+            }else if(!userArgs.fullName){
+                errorMsg = 'Name cannot be null!';
+            }else if(userArgs.password !== userArgs.confirmedPassword){
+                errorMsg = 'Passwords do not match!';
+            }
+
+            if(errorMsg){
+                userArgs.error = errorMsg;
+                res.render(`/user/edit_profile/${id}`, userArgs);
+            }else{
+                User.findOne({_id: id}).then(user => {
+                    user.email = userArgs.email;
+                    user.fullName = userArgs.fullName;
+
+                    let passwordHash = user.passwordHash;
+                    if(userArgs.password){
+                        passwordHash = encryption.hashPassword(userArgs.password, user.salt);
+                    }
+
+                    user.passwordHash = passwordHash;
+
+                    user.save((err) => {
+                        res.redirect('/');
+                    });
+                });
+            }
+        });
     }
 };
