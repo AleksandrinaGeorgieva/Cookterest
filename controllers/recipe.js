@@ -27,7 +27,7 @@ module.exports = {
             errorMsg = 'Invalid title!';
         }else if(!recipeArgs.content){
             errorMsg = 'Invalid content!';
-        }else if(!recipeArgs.ingredients){
+        }else if(!recipeArgs.ingredientName){
             errorMsg = 'Invalid indredients!';
         }else if(!recipeArgs.directions){
             errorMsg = 'Invalid directions!';
@@ -136,8 +136,8 @@ module.exports = {
                 recipe.category = recipeArgs.category;
                 recipe.title = recipeArgs.title;
                 recipe.content = recipeArgs.content;
-                recipe.ingredientQnty = recipeArgs.ingriedientQnty;
-                recipe.ingredientName = recipeArgs.ingriedientName;
+                recipe.ingredientQnty = recipeArgs.ingredientQnty;
+                recipe.ingredientName = recipeArgs.ingredientName;
                 recipe.directions = recipeArgs.directions;
                 recipe.prepTime = recipeArgs.prepTime;
                 recipe.cookTime = recipeArgs.cookTime;
