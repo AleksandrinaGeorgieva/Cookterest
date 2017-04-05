@@ -6,8 +6,11 @@ let recipeSchema = mongoose.Schema({
     author: {type:mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
     category: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Category'},
     date: {type: Date, default: Date.now()},
-    ingredientQnty: {type: String, required:true},
-    ingredientName: {type: String, required:true},
+    ingredients: {type: [{
+        name: {type: String},
+        quantity: {type: String},
+        measureable: {type: String}
+    }], required:true},
     directions: {type: String, required: true},
     prepTime: {type: Number},
     cookTime: {type: Number}

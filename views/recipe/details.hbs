@@ -34,21 +34,15 @@
                     </div>
                 </div>
                 <div class="col-xs-6 col-sm-3">
-                    <h4>Ingridients</h4>
+                    <h4>Ingredients</h4>
                     <table class="table-sideline">
                         <tbody>
-                        <tr>
-                            <td>{{recipe.ingredientQnty}}</td>
-                            <td>{{recipe.ingredientName}}</td>
-                        </tr>
-                        <tr>
-                            <td>qnty</td>
-                            <td>ingridient</td>
-                        </tr>
-                        <tr>
-                            <td>qnty</td>
-                            <td>ingridient</td>
-                        </tr>
+                            {{#each recipe.ingredients}}
+                            <tr>
+                                <td>{{this.name}}</td>
+                                <td>{{this}}</td>
+                            </tr>
+                            {{/each}}
                         </tbody>
                     </table>
                     <span>......</span>

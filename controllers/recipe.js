@@ -27,8 +27,10 @@ module.exports = {
             errorMsg = 'Invalid title!';
         }else if(!recipeArgs.content){
             errorMsg = 'Invalid content!';
-        }else if(!recipeArgs.ingredientName){
-            errorMsg = 'Invalid indredients!';
+        }else if(!recipeArgs.ingredients["0"]["\"name\""]){
+            errorMsg = 'Invalid indredient\'s name!';
+        }else if(!recipeArgs.ingredients["0"]["\"quantity\""]){
+            errorMsg = 'Invalid indredient\'s quantity!';
         }else if(!recipeArgs.directions){
             errorMsg = 'Invalid directions!';
         }else if(!recipeArgs.prepTime){
@@ -136,8 +138,9 @@ module.exports = {
                 recipe.category = recipeArgs.category;
                 recipe.title = recipeArgs.title;
                 recipe.content = recipeArgs.content;
-                recipe.ingredientQnty = recipeArgs.ingredientQnty;
-                recipe.ingredientName = recipeArgs.ingredientName;
+                recipe.ingredients = [{name: recipeArgs.ingredientName,
+                                       quantity: recipeArgs.ingredientQnty,
+                                       measureable: "" }];
                 recipe.directions = recipeArgs.directions;
                 recipe.prepTime = recipeArgs.prepTime;
                 recipe.cookTime = recipeArgs.cookTime;
