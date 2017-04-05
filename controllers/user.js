@@ -134,7 +134,7 @@ module.exports = {
                 res.render(`/user/edit_profile/${id}`, userArgs);
             }else{
                 User.findOne({_id: id}).then(user => {
-                    user.email = userArgs.email;
+                  //  user.email = userArgs.email;
                     user.fullName = userArgs.fullName;
 
                     let passwordHash = user.passwordHash;
