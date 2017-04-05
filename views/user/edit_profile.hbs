@@ -1,15 +1,15 @@
 <div class="col-md-9">
     <div class="well">
         <form class="form-horizontal"
-              action="/user/edit_profile/{{user.id}}" method="post">
+              action="/user/edit_profile/{{userData.id}}" method="post">
             <fieldset>
-                <legend>Modify User - {{ user.fullName }}</legend>
+                <legend>Modify User - {{ userData.fullName }}</legend>
                 <div class="form-group">
                     <label class="col-sm-4 control-label"
                            for="email">Email</label>
                     <div class="col-sm-4 ">
                         <input class="form-control" id="email"
-                               value="{{ user.email }}" name="email" disabled type="text">
+                               value="{{ userData.email }}" name="email" disabled type="text">
                     </div>
                 </div>
                 <div class="form-group">
@@ -17,7 +17,7 @@
                            for="fullName">Full Name</label>
                     <div class="col-sm-4 ">
                         <input type="text" class="form-control"
-                               id="fullName" value="{{ user.fullName }}" name="fullName" required>
+                               id="fullName" value="{{ userData.fullName }}" name="fullName" required>
                     </div>
                 </div>
                 <div class="form-group">

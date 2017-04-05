@@ -97,7 +97,7 @@ module.exports = {
         let id = req.params.id;
 
         User.findById(id).then(user => {
-            res.render('user/view_profile', {user: user});
+            res.render('user/view_profile', {userData: user});
         });
     },
 
@@ -110,7 +110,7 @@ module.exports = {
         }
 
         User.findById(id).then(user => {
-            res.render('user/edit_profile', {user: user});
+            res.render('user/edit_profile', {userData: user});
         });
     },
 

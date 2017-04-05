@@ -7,8 +7,8 @@
         </div>
 
         <div class="col-md-7">
-            <h3>{{ user.fullName }}</h3>
-            <h6>Email: {{ user.email }}</h6>
+            <h3>{{ userData.fullName }}</h3>
+            <h6>Email: {{ userData.email }}</h6>
         </div>
 
         <div class="col-md-2">
@@ -18,7 +18,7 @@
                     <span class="icon-cog icon-white"></span><span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="/user/edit_profile/{{user.id}}"><span class="icon-wrench"></span> Modify</a></li>
+                    <li><a href="/user/edit_profile/{{userData.id}}"><span class="icon-wrench"></span> Modify</a></li>
                 </ul>
             </div>
         </div>
