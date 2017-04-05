@@ -150,5 +150,32 @@ module.exports = {
                 });
             }
         });
+    },
+
+    uploadPhoto: (req, res) => {
+        let id = req.params.id;
+        var multer = require('multer');
+
+        var storage =   multer.diskStorage({
+            destination: function (req, file, callback) {
+                callback(null, './public/uploads');
+            },
+            filename: function (req, file, callback) {
+                callback(null, file.originalname);
+                //callback(null, ‌‌‌‌‌‌req.params.id + '.' +file.originalname.split('.').pop());
+            }
+        });
+        var upload = multer({ storage : storage}).single('userPhoto');
+
+        upload(req,res,function(err) {
+            User.findById(id)
+                .then(user => {
+                    user.picture = req.body.userPhotoName;
+                    user.save((err) => {
+                        res.redirect('/');
+                    });
+                });
+            //res.redirect("/");
+        });
     }
 };

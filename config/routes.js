@@ -10,7 +10,9 @@ module.exports = (app) => {
 
     app.get('/user/view_profile/:id', userController.profileGet);
     app.get('/user/edit_profile/:id', userController.editProfileGet);
+
     app.post('/user/edit_profile/:id', userController.editProfilePost);
+    app.post('/user/upload_photo/:id', userController.uploadPhoto);
 
     app.get('/user/register', userController.registerGet);
     app.post('/user/register', userController.registerPost);
