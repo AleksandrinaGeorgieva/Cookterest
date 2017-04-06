@@ -1,0 +1,38 @@
+<div class="cookbook-view">
+    <div class="panel-group" id="">
+        {{#each categories}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{this.name}}">
+                            {{this.name}} ({{this.recipesData.length}})</a>
+                    </h4>
+                </div>
+                <div id="collapse{{this.name}}" class="panel-collapse collapse">
+                    <div class="row">
+                        {{#each recipesData}}
+                            <div class="col-lg-4 col-sm-6 text-center">
+                                <a href="/recipe/details/{{ id }}" class="list-group-item">
+                                    <img class="img-circle img-center" src="http://placehold.it/200x200"
+                                         alt="">
+                                    <h3>{{title}}</h3>
+                                    <small>{{author.fullName}}</small>
+                                    <p>{{directions}}</p>
+                                </a>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        let firstResult = $('.cookbook-view .panel-collapse')[0];
+        if(firstResult){
+            $(firstResult).addClass(' in');
+        }
+    })
+</script>

@@ -18,7 +18,7 @@ module.exports = (config) => {
     require('./../models/Recipe');
     require('./../models/User');
     require('./../models/User').seedAdmin();
-    require('./../models/Category');
+    require('./../models/Category').initialize();
 };
 
 
