@@ -158,7 +158,7 @@ module.exports = {
 
         var storage =   multer.diskStorage({
             destination: function (req, file, callback) {
-                callback(null, './public/uploads');
+                callback(null, './public/profile_pictures');
             },
             filename: function (req, file, callback) {
                 callback(null, file.originalname);
