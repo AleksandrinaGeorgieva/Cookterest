@@ -22,17 +22,18 @@
                     <div class="col-sm-6">
                         <div class="row">
                             <label class="col-sm-3 control-label" for="recipeIngredientQnty">Quantity</label>
+                            <label class="col-sm-3 control-label" for="recipeIngredientName">Measure</label>
                             <label class="col-sm-3 control-label" for="recipeIngredientName">Name</label>
                         </div>
-                        <div class="row">
+                        <div class="row" id="ingredient1">
                             <div class="col-sm-3">
-                                <textarea class="form-control" id="recipeIngredientQnty" rows="1" name="ingredients[0][&quot;quantity&quot;]" required></textarea>
+                                <textarea class="form-control" id="recipeIngredientQnty" rows="1" name="ingredients[0][quantity]" required></textarea>
                             </div>
                             <div class="col-sm-5">
-                                <textarea class="form-control" id="recipeIngredientName" rows="1" name="ingredients[0][&quot;name&quot;]" required></textarea>
+                                <textarea class="form-control" id="recipeIngredientName" rows="1" name="ingredients[0][name]" required></textarea>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm">Add +</button>
+                        <button type="button" class="btn btn-primary btn-sm" onclick="prependIngredient(1)">Add +</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -76,3 +77,19 @@
         </form>
     </div>
 </div>
+<script>
+    function prependIngredient(arrIndex) {
+        var divIngredient = document.createElement("div");
+        divIngredient.addClass("row");
+        var newContent = document.createTextNode("<textarea></textarea>");
+        /*var newContent = document.createTextNode("<div class=\"col-sm-3\">" +
+                "<textarea class=\"form-control\"  rows=\"1\" name=\"ingredients["+arrIndex+"][quantity]\" required></textarea>" +
+                "</div>" +
+                "<div class=\"col-sm-5\">" +
+                "<textarea class=\"form-control\"  rows=\"1\" name=\"ingredients["+arrIndex+"][name]\" required></textarea>" +
+                "</div></div>");
+        divIngredient.appendChild(newContent); */
+        divIngredient.appendChild(newContent);
+        document.getElementById('ingredient1').appendChild(divIngredient);
+    }
+</script>

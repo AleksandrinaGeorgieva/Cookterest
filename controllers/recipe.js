@@ -27,10 +27,10 @@ module.exports = {
             errorMsg = 'Invalid title!';
         }else if(!recipeArgs.content){
             errorMsg = 'Invalid content!';
-        }else if(!recipeArgs.ingredients["0"]["\"name\""]){
-            errorMsg = 'Invalid indredient\'s name!';
-        }else if(!recipeArgs.ingredients["0"]["\"quantity\""]){
-            errorMsg = 'Invalid indredient\'s quantity!';
+        }else if(!recipeArgs.ingredients["0"]["name"]){
+            errorMsg = 'Invalid ingredient\'s name!';
+        }else if(!recipeArgs.ingredients["0"]["quantity"]){
+            errorMsg = 'Invalid ingredient\'s quantity!';
         }else if(!recipeArgs.directions){
             errorMsg = 'Invalid directions!';
         }else if(!recipeArgs.prepTime){
