@@ -20,7 +20,20 @@
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="recipeIngredients">Ingredients</label>
                     <div class="col-sm-6">
-                        <textarea class="form-control" id="recipeIngredients" rows="5" name="ingredients" required></textarea>
+                        <div class="row">
+                            <label class="col-sm-3 control-label" for="recipeIngredientQnty">Quantity</label>
+                            <label class="col-sm-3 control-label" for="recipeIngredientName">Measure</label>
+                            <label class="col-sm-3 control-label" for="recipeIngredientName">Name</label>
+                        </div>
+                        <div class="row" id="ingredient1">
+                            <div class="col-sm-3">
+                                <textarea class="form-control" id="recipeIngredientQnty" rows="1" name="ingredients[0][quantity]" required></textarea>
+                            </div>
+                            <div class="col-sm-5">
+                                <textarea class="form-control" id="recipeIngredientName" rows="1" name="ingredients[0][name]" required></textarea>
+                            </div>
+                        </div>
+                        <button id="btnAddIng1" type="button" class="btn btn-primary btn-sm">Add +</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,3 +77,21 @@
         </form>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#btnAddIng1").click(function(){
+            $("#btnAddIng1").before(
+                "<div class=\"row\" id=\"ingredient2\">" +
+                    "<div class=\"col-sm-3\"> " +
+                        "<textarea class=\"form-control\" rows=\"1\"  required></textarea>" +
+                    "</div>" +
+                    "<div class=\"col-sm-4\"> " +
+                        "<textarea class=\"form-control\" rows=\"1\"  required></textarea>" +
+                    "</div>" +
+                    "<div class=\"col-sm-5\">" +
+                        "<textarea class=\"form-control\"  rows=\"1\"  required></textarea>" +
+                    "</div>" +
+                "</div>");
+        });
+    });
+</script>

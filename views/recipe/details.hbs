@@ -2,15 +2,85 @@
     <!--<div class="row">-->
         <div class="col-md-9">
             <recipe>
-                <header>
-                    <h2>{{recipe.title}}</h2>
-                </header>
-                <p>
-                    {{recipe.content}}
-                </p>
-                <small class="author">
-                    {{recipe.author.fullName}}
-                </small>
+                <img src="/images/blueberry-cheesecake.jpeg" class="top-image-recipe img-responsive">
+                <div class="row placeholders bar-quickStats">
+
+                    <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
+                        <img class="iconStats" src="/images/prepTime.jpeg">
+                        <h6>Preparation Time</h6>
+                        <span>{{recipe.prepTime}}</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
+                        <img class="iconStats" src="/images/prepTime.jpeg">
+                        <h6>Cooking Time</h6>
+                        <span>{{recipe.prepTime}}</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
+                        <img class="iconStats" src="/images/prepTime.jpeg">
+                        <h5>Preparation Time</h5>
+                        <span>{{recipe.prepTime}}</span>
+                    </div>
+                    <div class="col-xs-6 col-sm-3 placeholder field-quickStats">
+                        <img class="iconStats" src="/images/prepTime.jpeg">
+                        <h5>Preparation Time</h5>
+                        <span>{{recipe.prepTime}}</span>
+                    </div>
+
+                </div><!-- Quick Stats -->
+                <div class="row">
+                    <div class="col-xs-6 col-sm-3">
+                        <div class="col-xs-3"></div>
+                        <div class="col-xs-3">
+                            <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star
+                        </button>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-9">
+                        <h2 class="title-recipie">{{recipe.title}}</h2>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-3">
+                    <h4>Ingredients</h4>
+                    <table class="table-sideline">
+                        <tbody>
+                            {{#each recipe.ingredients}}
+                            <tr>
+                                <td>{{this.quantity}}</td>
+                                <td>{{this.measure}}</td>
+                                <td>{{this.name}}</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                    <span>......</span>
+                    <h4>Nutrition</h4>
+                    <table class="table-sideline">
+                        <tbody>
+                        <tr>
+                            <td>Total Fats</td>
+                            <td>value</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohydrates</td>
+                            <td>value</td>
+                        </tr>
+                        <tr>
+                            <td>Proteins</td>
+                            <td>value</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div><!-- Ingridients / Nutrition -->
+                <div class="col-xs-12 col-sm-9">
+
+                    <p>{{recipe.content}}</p>
+                </div>
+                <div class="row">
+                    <small class="author">
+                        {{recipe.author.fullName}}
+                    </small>
+                </div>
                 <footer>
                     <div class="pull-right">
                         {{#if isUserAuthorized}}

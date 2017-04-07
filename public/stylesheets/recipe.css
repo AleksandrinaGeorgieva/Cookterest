@@ -1,0 +1,35 @@
+.top-image-recipe{
+    display: inline-block;
+    text-align: center;
+}
+.bar-quickStats {
+    border-radius: 3px;
+    border: 1px dashed #bbb;
+    vertical-align: baseline;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding-top: 3px;
+}
+.field-quickStats{
+    color: #333;
+    display: inline-block;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: center;
+    padding-top: 2px;
+    width: 25%;
+}
+.iconStats{
+    display: inline-block;
+    height: 32px;
+    width: 27px;
+}
+.title-recipie{
+    margin-top: 0px;
+}
+.table-sideline{
+    width: 100%;
+}
+.centeredText{
+    text-align: center;
+}
