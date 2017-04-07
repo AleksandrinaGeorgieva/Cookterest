@@ -33,7 +33,7 @@
                                 <textarea class="form-control" id="recipeIngredientName" rows="1" name="ingredients[0][name]" required></textarea>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm" onclick="prependIngredient(1)">Add +</button>
+                        <button id="btnAddIng1" type="button" class="btn btn-primary btn-sm">Add +</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -78,18 +78,20 @@
     </div>
 </div>
 <script>
-    function prependIngredient(arrIndex) {
-        var divIngredient = document.createElement("div");
-        divIngredient.addClass("row");
-        var newContent = document.createTextNode("<textarea></textarea>");
-        /*var newContent = document.createTextNode("<div class=\"col-sm-3\">" +
-                "<textarea class=\"form-control\"  rows=\"1\" name=\"ingredients["+arrIndex+"][quantity]\" required></textarea>" +
-                "</div>" +
-                "<div class=\"col-sm-5\">" +
-                "<textarea class=\"form-control\"  rows=\"1\" name=\"ingredients["+arrIndex+"][name]\" required></textarea>" +
-                "</div></div>");
-        divIngredient.appendChild(newContent); */
-        divIngredient.appendChild(newContent);
-        document.getElementById('ingredient1').appendChild(divIngredient);
-    }
+    $(document).ready(function(){
+        $("#btnAddIng1").click(function(){
+            $("#btnAddIng1").before(
+                "<div class=\"row\" id=\"ingredient2\">" +
+                    "<div class=\"col-sm-3\"> " +
+                        "<textarea class=\"form-control\" rows=\"1\"  required></textarea>" +
+                    "</div>" +
+                    "<div class=\"col-sm-4\"> " +
+                        "<textarea class=\"form-control\" rows=\"1\"  required></textarea>" +
+                    "</div>" +
+                    "<div class=\"col-sm-5\">" +
+                        "<textarea class=\"form-control\"  rows=\"1\"  required></textarea>" +
+                    "</div>" +
+                "</div>");
+        });
+    });
 </script>
