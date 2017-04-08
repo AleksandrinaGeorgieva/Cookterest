@@ -4,10 +4,13 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+const hbs = require('hbs');
 
 module.exports = (app, config) => {
     // View engine setup.
     app.set('views', path.join(config.rootFolder, '/views'));
+
+    hbs.registerPartials(__dirname + '/../views/partials');
     app.set('view engine', 'hbs');
 
     // This set up which is the parser for the request's data.

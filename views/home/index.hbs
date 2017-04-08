@@ -1,15 +1,14 @@
-<!--<div class="container body-content">-->
-    <!--<div class="row">-->
-        {{#each categories}}
-            <div class="col-md-9">
-                <header>
-                    <h2>
-                        <a href="/category/{{ this.id }}">
-                            {{ this.name }} ({{this.recipes.length }})
-                        </a>
-                    </h2>
-                </header>
-            </div>
-        {{/each}}
-    <!--</div>-->
-<!--</div>-->
+<div class="btn-group categories-navbar" role="group">
+    {{#each categories}}
+        <a href="/category/{{ this.id }}"  class="btn btn-success">
+            {{ this.name }} ({{this.recipes.length }})
+        </a>
+    {{/each}}
+</div>
+<br><br>
+<ol class="breadcrumb">
+    <li>
+        <a href="#">Most Recent</a>
+    </li>
+</ol>
+{{> recipesGridView}}

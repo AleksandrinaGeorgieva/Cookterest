@@ -7060,3 +7060,7 @@ recipe .author  {
 .cookbook-view .row{
   padding: 10px;
 }
+
+.categories-navbar a{
+  color: white !important;
+}
