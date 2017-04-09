@@ -1,138 +1,26 @@
-<script src="/javascripts/modernizr.custom.js"></script>
-<script src="/javascripts/jquery.bookblock.js"></script>
-<link rel='stylesheet' href='/stylesheets/bookblock.css'/>
-<div class="col-md-9">
-    <div class="bb-custom-wrapper">
-        <div id="bb-bookblock" class="bb-bookblock">
-            {{#each user.recipes}}
-                <div class="bb-item">
-                    <img src="/images/book-background.png">
-                    <table class="book-page-content">
-                        <tbody>
-                        <tr>
-                            <td>
-                                <h2>{{this.title}}</h2>
-                                <p>Author: {{this.author}}<br></p>
-                                <p>Preparation time: {{this.prepTime}}<br></p>
-                                <p>Cooking time: {{this.cookTime}}<br></p>
-
-
-                            </td>
-                            <td>
-                                <h3>Ingredients:</h3>
-                                <p>{{this.ingredients}}</p>
-                            </td>
-                        </tr>
-                        </tbody>
-
-                    </table>
+<div class="cookbook-view">
+    <div class="panel-group" id="">
+        {{#each categories}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{this.name}}">
+                            {{this.name}} ({{this.recipesData.length}})</a>
+                    </h4>
                 </div>
-                <div class="bb-item">
-                    <img src="/images/book-background.png">
-                    <table class="book-page-content">
-                        <tbody>
-                        <tr>
-                            <td>
-                                <h3>Directions:</h3>
-                                <p>{{this.directions}}</p>
-                            </td>
-                            <td>
-
-                            </td>
-                        </tr>
-                        </tbody>
-
-                    </table>
+                <div id="collapse{{this.name}}" class="panel-collapse collapse">
+                    {{> recipesGridView}}
                 </div>
-            {{/each}}
-
-        </div>
-        <nav>
-            <a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first">First page</a>
-            <a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
-            <a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
-            <a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>
-        </nav>
+            </div>
+        {{/each}}
     </div>
 </div>
 
 <script>
-    let Page = (function() {
-        let config = {
-                    $bookBlock : $( '#bb-bookblock' ),
-                    $navNext : $( '#bb-nav-next' ),
-                    $navPrev : $( '#bb-nav-prev' ),
-                    $navFirst : $( '#bb-nav-first' ),
-                    $navLast : $( '#bb-nav-last' )
-                },
-                init = function() {
-                    config.$bookBlock.bookblock( {
-                        speed : 800,
-                        shadowSides : 0.8,
-                        shadowFlip : 0.7
-                    } );
-                    initEvents();
-                },
-                initEvents = function() {
-
-                    let $slides = config.$bookBlock.children();
-
-                    // add navigation events
-                    config.$navNext.on( 'click touchstart', function() {
-                        config.$bookBlock.bookblock( 'next' );
-                        return false;
-                    } );
-
-                    config.$navPrev.on( 'click touchstart', function() {
-                        config.$bookBlock.bookblock( 'prev' );
-                        return false;
-                    } );
-
-                    config.$navFirst.on( 'click touchstart', function() {
-                        config.$bookBlock.bookblock( 'first' );
-                        return false;
-                    } );
-
-                    config.$navLast.on( 'click touchstart', function() {
-                        config.$bookBlock.bookblock( 'last' );
-                        return false;
-                    } );
-
-                    // add swipe events
-                    $slides.on( {
-                        'swipeleft' : function( event ) {
-                            config.$bookBlock.bookblock( 'next' );
-                            return false;
-                        },
-                        'swiperight' : function( event ) {
-                            config.$bookBlock.bookblock( 'prev' );
-                            return false;
-                        }
-                    } );
-
-                    // add keyboard events
-                    $( document ).keydown( function(e) {
-                        let keyCode = e.keyCode || e.which,
-                                arrow = {
-                                    left : 37,
-                                    up : 38,
-                                    right : 39,
-                                    down : 40
-                                };
-
-                        switch (keyCode) {
-                            case arrow.left:
-                                config.$bookBlock.bookblock( 'prev' );
-                                break;
-                            case arrow.right:
-                                config.$bookBlock.bookblock( 'next' );
-                                break;
-                        }
-                    } );
-                };
-
-        return { init : init };
-
-    })();
-    Page.init();
+    $(document).ready(function(){
+        let firstResult = $('.cookbook-view .panel-collapse')[0];
+        if(firstResult){
+            $(firstResult).addClass(' in');
+        }
+    })
 </script>

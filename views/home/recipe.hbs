@@ -1,25 +1,7 @@
-<!--<div class="container body-content">-->
-    <!--<div class="row">-->
-        {{#each recipes}}
-            <div class="col-md-6">
-                <recipe>
-                    <header>
-                        <h2>{{ this.title }}</h2>
-                    </header>
-                    <p>
-                        {{ this.content }}
-                    </p>
-                    <small class="author">
-                        {{ this.author.fullName }}
-                    </small>
-                    <footer>
-                        <div class="pull-right">
-                            <a class="btn btn-default btn-xs"
-                               href="/recipe/details/{{this.id}}">Read more &raquo;</a>
-                        </div>
-                    </footer>
-                </recipe>
-            </div>
-        {{/each}}
-    <!--</div>-->
-<!--</div>-->
+<ol class="breadcrumb">
+    <li>
+        <a href="/">Home</a> &nbsp;/&nbsp;
+        <a href="#">{{category.name}}</a>
+    </li>
+</ol>
+{{> recipesGridView}}

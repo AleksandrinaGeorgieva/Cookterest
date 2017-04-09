@@ -7,7 +7,15 @@ module.exports = {
   index: (req, res) => {
       Category.find({})
           .then(categories => {
-              res.render('home/index', {categories: categories});
+              //add most recent recipes
+              Recipe.find({})
+                  .sort( { date: 'desc' } )
+                  .limit(12)
+                  .then(recipes => {
+                      res.render('home/index', {categories: categories, recipesData: recipes});
+                  });
+
+
           });
   },
 
@@ -20,7 +28,7 @@ module.exports = {
                   console.log(err.message);
               }
 
-              res.render('home/recipe', {recipes: category.recipes});
+              res.render('home/recipe', {recipesData: category.recipes, category: category});
           });
       })
     }

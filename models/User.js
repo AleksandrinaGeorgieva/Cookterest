@@ -8,6 +8,7 @@ let userSchema = mongoose.Schema(
         email: {type: String, required: true, unique: true},
         passwordHash: {type: String, required: true},
         fullName: {type: String, required: true},
+        picture: {type: String, required: false, default: 'default.jpeg'},
         recipes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'}],
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
         salt: {type: String, required: true}
@@ -71,9 +72,14 @@ userSchema.method ({
 
     getRecipes: function (){
        return Recipe.find({author: this.id})
+           .populate('author')
             .then(recipes => {
                 return recipes;
             });
+    },
+
+    isAllowedToEditProfile: function(profileId){
+        return profileId == this.id;
     }
 });
 
@@ -100,7 +106,8 @@ module.exports.seedAdmin = () => {
                             fullName: 'Admin',
                             recipes: [],
                             salt: salt,
-                            roles: roles
+                            roles: roles,
+                            picture: 'default.jpeg'
                         };
 
                         User.create(user)

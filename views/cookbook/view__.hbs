@@ -1,0 +1,184 @@
+<script src="/javascripts/modernizr.custom.js"></script>
+<script src="/javascripts/jquery.bookblock.js"></script>
+<link rel='stylesheet' href='/stylesheets/bookblock.css'/>
+
+<div class="col-md-10" id="book-container">
+    <div class="bb-custom-wrapper">
+        <div class="cookbook-prev-button cookbook-nav-buttons bb-custom-icon-arrow-left bb-custom-icon"
+             style="display: none;"></div>
+        <div class="cookbook-next-button cookbook-nav-buttons bb-custom-icon-arrow-right bb-custom-icon"></div>
+        <!--<nav>-->
+            <!--<a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first">First page</a>-->
+            <!--<a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>-->
+            <!--<a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>-->
+            <!--<a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>-->
+        <!--</nav>-->
+        <div id="bb-bookblock" class="bb-bookblock">
+            {{#each recipes}}
+                <div class="bb-item">
+                    <img src="/images/book-background.png">
+                    <table class="book-page-content">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h2>{{this.title}}</h2>
+                                <p>Author: {{this.author.fullName}}<br></p>
+                                <p>Preparation time: {{this.prepTime}}<br></p>
+                                <p>Cooking time: {{this.cookTime}}<br></p>
+                            </td>
+                            <td>
+                                <h3>Ingredients:</h3>
+                                <p>{{this.ingredients}}</p>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                {{#each this.directionsPages}}
+                    <div class="bb-item">
+                        <img src="/images/book-background.png">
+                        <table class="book-page-content">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <!--<h3>Directions: (page @index)</h3>-->
+                                    <p>{{this.left}}</p>
+                                </td>
+                                <td>
+                                    {{this.right}}
+                                </td>
+                            </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                {{/each}}
+            {{/each}}
+
+        </div>
+    </div>
+</div>
+<script>
+    let Page = (function () {
+        let config = {
+                    $bookBlock: $('#bb-bookblock'),
+                    $navNext: $('.cookbook-next-button'),
+                    $navPrev: $('.cookbook-prev-button'),
+//                    $navFirst : $( '#bb-nav-first' ),
+//                    $navLast : $( '#bb-nav-last' ),
+                    $bookPContainer: $('#book-container')
+                },
+                init = function () {
+                    config.$bookBlock.bookblock({
+                        speed: 800,
+                        shadowSides: 0.8,
+                        shadowFlip: 0.7,
+                        onEndFlip: function (old, page, isLimit) {
+                            //hide nav buttons
+                            $('.book-page-content').show();
+                            $('.cookbook-nav-buttons').show();
+                            if (isLimit) {
+                                let buttonToHideClass = '.cookbook-prev-button';
+                                if (old < page) {
+                                    buttonToHideClass = '.cookbook-next-button';
+                                }
+                                $(buttonToHideClass).hide();
+                            }
+                            return false;
+                        },
+                        onBeforeFlip: function (page) {
+                            //hide nav buttons
+                            $('.cookbook-nav-buttons').hide();
+                            //hide recipe text
+                            $('.book-page-content').hide();
+                            return false;
+                        }
+                    });
+
+                    resizeBook();
+                    initEvents();
+                },
+
+                resizeBook = function () {
+                    let width = config.$bookPContainer.width();
+                    config.$bookBlock.width(width);
+                    config.$bookBlock.height(width * 0.78);
+                    $('.bb-custom-wrapper').width(width);
+                    $('.bb-bookblock img').width(width);
+                },
+//
+//                renderContent = function () {
+//                    var raw_template = $('#cookbook-template').html();
+//                    var template = Handlebars.compile(raw_template);
+//                    var placeHolder = $(".bb-custom-wrapper");
+//                    var context = {"recipes": [{"title": "test"}]};
+//                    var html = template(context);
+//                    console.log(html);
+//                    placeHolder.append(html);
+//                },
+
+                initEvents = function () {
+
+                    let $slides = config.$bookBlock.children();
+
+                    $(window).resize(resizeBook);
+
+                    // add navigation events
+                    config.$navNext.on('click touchstart', function () {
+                        config.$bookBlock.bookblock('next');
+                        return false;
+                    });
+
+                    config.$navPrev.on('click touchstart', function () {
+                        config.$bookBlock.bookblock('prev');
+                        return false;
+                    });
+
+//                    config.$navFirst.on( 'click touchstart', function() {
+//                        config.$bookBlock.bookblock( 'first' );
+//                        return false;
+//                    } );
+//
+//                    config.$navLast.on( 'click touchstart', function() {
+//                        config.$bookBlock.bookblock( 'last' );
+//                        return false;
+//                    } );
+
+                    // add swipe events
+                    $slides.on({
+                        'swipeleft': function (event) {
+                            config.$bookBlock.bookblock('next');
+                            return false;
+                        },
+                        'swiperight': function (event) {
+                            config.$bookBlock.bookblock('prev');
+                            return false;
+                        }
+                    });
+
+                    // add keyboard events
+                    $(document).keydown(function (e) {
+                        let keyCode = e.keyCode || e.which,
+                                arrow = {
+                                    left: 37,
+                                    up: 38,
+                                    right: 39,
+                                    down: 40
+                                };
+
+                        switch (keyCode) {
+                            case arrow.left:
+                                config.$bookBlock.bookblock('prev');
+                                break;
+                            case arrow.right:
+                                config.$bookBlock.bookblock('next');
+                                break;
+                        }
+                    });
+                };
+
+        return {init: init};
+
+    })();
+    Page.init();
+</script>

@@ -22,3 +22,20 @@ categorySchema.set('versionKey', false);
 const Category = mongoose.model('Category', categorySchema);
 
 module.exports = Category;
+
+module.exports.initialize = () => {
+    Category.find({})
+        .limit(1)
+        .then(category => {
+            if(!category.length){
+                Category.create({name: 'Appetizers'});
+                Category.create({name: 'Salads'});
+                Category.create({name: 'Soups'});
+                Category.create({name: 'Meals'});
+                Category.create({name: 'Pizza'});
+                Category.create({name: 'Pasta'});
+                Category.create({name: 'Bakery'});
+                Category.create({name: 'Desserts'});
+            }
+        });
+};

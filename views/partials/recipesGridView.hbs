@@ -1,0 +1,13 @@
+<div class="row">
+    {{#each recipesData}}
+        <div class="col-lg-3 col-md-3 col-sm-3 text-center">
+            <a href="/recipe/details/{{ id }}" class="list-group-item">
+                <img class="img-circle img-center" src="http://placehold.it/200x200"
+                     alt="">
+                <h3>{{title}}</h3>
+                <small>{{author.fullName}}</small>
+                <p>{{directions}}</p>
+            </a>
+        </div>
+    {{/each}}
+</div>

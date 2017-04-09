@@ -34,62 +34,62 @@ module.exports = {
     },
 
     editPost: (req, res) => {
-        let id = req.params.id;
-        let userArgs = req.body;
+            let id = req.params.id;
+            let userArgs = req.body;
 
-        User.findOne({email: userArgs.email, _id: {$ne: id}}).then(user => {
-            let errorMsg = '';
+            User.findOne({email: userArgs.email, _id: {$ne: id}}).then(user => {
+                let errorMsg = '';
 
-            if(user){
-                errorMsg = 'User with the same username exists!';
-            }else if(!userArgs.email){
-                errorMsg = 'Email cannot be null!';
-            }else if(!userArgs.fullName){
-                errorMsg = 'Name cannot be null!';
-            }else if(userArgs.password !== userArgs.confirmedPassword){
-                errorMsg = 'Passwords do not match!';
-            }
+                if(user){
+                    errorMsg = 'User with the same username exists!';
+                }else if(!userArgs.email){
+                    errorMsg = 'Email cannot be null!';
+                }else if(!userArgs.fullName){
+                    errorMsg = 'Name cannot be null!';
+                }else if(userArgs.password !== userArgs.confirmedPassword){
+                    errorMsg = 'Passwords do not match!';
+                }
 
-            if(errorMsg){
-                userArgs.error = errorMsg;
-                res.render('admin/user/edit', userArgs);
-            }else{
-                Role.find({}).then(roles => {
-                    if(!userArgs.roles){
-                        userArgs.roles = [];
-                    }
-
-                    let newRoles = roles.filter(role => {
-                        return userArgs.roles.indexOf(role.name) !== -1;
-                    }).map(role => {
-                        return role.id;
-                    });
-
-                    User.findOne({_id: id}).then(user => {
-                        user.email = userArgs.email;
-                        user.fullName = userArgs.fullName;
-
-                        let passwordHash = user.passwordHash;
-                        if(userArgs.password){
-                            passwordHash = enctyprion.hashPassword(userArgs.password, user.salt);
+                if(errorMsg){
+                    userArgs.error = errorMsg;
+                    res.render('admin/user/edit', userArgs);
+                }else{
+                    Role.find({}).then(roles => {
+                        if(!userArgs.roles){
+                            userArgs.roles = [];
                         }
 
-                        user.passwordHash = passwordHash;
-                        user.roles = newRoles;
+                        let newRoles = roles.filter(role => {
+                            return userArgs.roles.indexOf(role.name) !== -1;
+                        }).map(role => {
+                            return role.id;
+                        });
 
-                        user.save((err) => {
-                            if(err){
-                                res.redirect('/');
-                            }else{
-                                res.redirect('/admin/user/all');
+                        User.findOne({_id: id}).then(user => {
+                            user.email = userArgs.email;
+                            user.fullName = userArgs.fullName;
+
+                            let passwordHash = user.passwordHash;
+                            if(userArgs.password){
+                                passwordHash = enctyprion.hashPassword(userArgs.password, user.salt);
                             }
+
+                            user.passwordHash = passwordHash;
+                            user.roles = newRoles;
+
+                            user.save((err) => {
+                                if(err){
+                                    res.redirect('/');
+                                }else{
+                                    res.redirect('/admin/user/all');
+                                }
+                            })
                         })
-                    })
-                });
+                    });
 
 
-            }
-        })
+                }
+            })
     },
 
     deleteGet: (req, res) => {

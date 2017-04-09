@@ -1,6 +1,4 @@
 db/
 .idea/
-AdminFunctionality.zip
-BasicFunctionality.zip
 todo.txt
-.gitignore
+node_modules/
