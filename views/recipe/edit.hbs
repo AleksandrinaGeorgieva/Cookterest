@@ -17,20 +17,26 @@
                 </div>
                 <div class="form-group">
                     <label class="col-sm-4 control-label" for="recipeIngredients">Ingredients</label>
-                    <div class="col-sm-6">
+                    <div class="col-sm-7">
                         <div class="row">
                             <label class="col-sm-3 control-label" for="recipeIngredientQnty">Quantity</label>
+                            <label class="col-sm-3 control-label" for="recipeIngredientName">Measure</label>
                             <label class="col-sm-3 control-label" for="recipeIngredientName">Name</label>
                         </div>
-                        <div class="row">
+                        {{#each ingredients}}
+                        <div class="row" id="ingredient-{{@index}}"  >
                             <div class="col-sm-3">
-                                <textarea class="form-control" id="recipeIngredientQnty" rows="1" name="ingredientQnty" required>{{ingredients.name}}</textarea>
+                                <textarea class="form-control" id="recipeIngQnty" rows="1" name="ingredients[{{@index}}][quantity]" required>{{this.quantity}}</textarea>
                             </div>
-                            <div class="col-sm-5">
-                                <textarea class="form-control" id="recipeIngredientName" rows="1" name="ingredientName" required>{{ingedients.quantity}}</textarea>
+                            <div class="col-sm-3">
+                                <textarea class="form-control" id="recipeIngMeasure" rows="1" name="ingredients[{{@index}}][measure]" required>{{this.measure}}</textarea>
+                            </div>
+                            <div class="col-sm-4">
+                                <textarea class="form-control" id="recipeIngName" rows="1" name="ingredients[{{@index}}][name]" required>{{this.name}}</textarea>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm">Add +</button>
+                        {{/each}}
+                        <button id="btnAddIng" type="button" class="btn btn-primary btn-sm" lineCount="{{ingredients.length}}">Add +</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -73,3 +79,27 @@
          </form>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $("#btnAddIng").click(function(){
+            var lineCount = $(this).attr('lineCount');
+            lineCount++;
+
+            $("#btnAddIng").before(
+                    "<div class='row' id='ingredient-" + lineCount + "'>" +
+                    "<div class='col-sm-3'> " +
+                    "<textarea class='form-control' rows='1' name='ingredients["+ lineCount +"][quantity]' required></textarea>" +
+                    "</div>" +
+                    "<div class='col-sm-3'> " +
+                    "<textarea class='form-control' rows='1' name='ingredients["+ lineCount +"][measure]' required></textarea>" +
+                    "</div>" +
+                    "<div class='col-sm-4'>" +
+                    "<textarea class='form-control' rows='1' name='ingredients["+ lineCount +"][name]' required></textarea>" +
+                    "</div>" +
+                    "</div>");
+
+            $(this).attr('lineCount', lineCount);
+        });
+    });
+</script><!--Add Ing-->

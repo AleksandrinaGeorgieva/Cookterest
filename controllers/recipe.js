@@ -138,9 +138,7 @@ module.exports = {
                 recipe.category = recipeArgs.category;
                 recipe.title = recipeArgs.title;
                 recipe.content = recipeArgs.content;
-                recipe.ingredients = [{name: recipeArgs.ingredientName,
-                                       quantity: recipeArgs.ingredientQnty,
-                                       measureable: "" }];
+                recipe.ingredients = recipeArgs.ingredients;
                 recipe.directions = recipeArgs.directions;
                 recipe.prepTime = recipeArgs.prepTime;
                 recipe.cookTime = recipeArgs.cookTime;
