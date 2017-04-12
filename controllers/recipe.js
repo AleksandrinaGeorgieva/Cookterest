@@ -139,6 +139,7 @@ module.exports = {
                 recipe.title = recipeArgs.title;
                 recipe.content = recipeArgs.content;
                 recipe.ingredients = recipeArgs.ingredients;
+                recipe.nutritions = recipeArgs.nutritions;
                 recipe.directions = recipeArgs.directions;
                 recipe.prepTime = recipeArgs.prepTime;
                 recipe.cookTime = recipeArgs.cookTime;

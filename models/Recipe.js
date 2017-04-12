@@ -7,6 +7,7 @@ let recipeSchema = mongoose.Schema({
     category: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Category'},
     date: {type: Date, default: Date.now()},
     ingredients: {type: Array, required:true},
+    nutritions: {type: Object},
     directions: {type: String, required: true},
     prepTime: {type: Number},
     cookTime: {type: Number}
