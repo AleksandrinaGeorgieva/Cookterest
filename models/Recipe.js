@@ -6,8 +6,9 @@ let recipeSchema = mongoose.Schema({
     author: {type:mongoose.Schema.Types.ObjectId, required: true, ref: 'User'},
     category: {type: mongoose.Schema.Types.ObjectId, required: true, ref: 'Category'},
     date: {type: Date, default: Date.now()},
+    picture: {type: String, required: false, default: 'defaultRecipeCover.png'},
     ingredients: {type: Array, required:true},
-    nutritions: {type: Object},
+    nutrition: {type: Object},
     directions: {type: String, required: true},
     prepTime: {type: Number},
     cookTime: {type: Number}

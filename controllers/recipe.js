@@ -48,9 +48,15 @@ module.exports = {
         Recipe.create(recipeArgs)
             .then(recipe => {
                 recipe.prepareInsert();
-                res.redirect('/');
+                res.redirect('/recipe/details/' + recipe.id);
             });
+       /* Recipe.findById(recipeArgs.id)
+            .populate('author')
+            .then(recipe => {
+
+            });*/
     },
+
     details: (req, res) => {
         let id = req.params.id;
 
@@ -139,7 +145,7 @@ module.exports = {
                 recipe.title = recipeArgs.title;
                 recipe.content = recipeArgs.content;
                 recipe.ingredients = recipeArgs.ingredients;
-                recipe.nutritions = recipeArgs.nutritions;
+                recipe.nutrition = recipeArgs.nutrition;
                 recipe.directions = recipeArgs.directions;
                 recipe.prepTime = recipeArgs.prepTime;
                 recipe.cookTime = recipeArgs.cookTime;
@@ -156,11 +162,36 @@ module.exports = {
                             category.save();
                         }
                     });
-                    //res.redirect('/recipe/details/${id}');
                 });
-                 res.redirect('/');
+
+                res.redirect('/recipe/details/' + recipe.id);
              });
         }
+    },
+
+    uploadPhoto: (req, res) => {
+        let id = req.params.id;
+        var multer = require('multer');
+
+        var storage =   multer.diskStorage({
+            destination: function (req, file, callback) {
+                callback(null, './public/recipe_pictures');
+            },
+            filename: function (req, file, callback) {
+                callback(null, file.originalname);
+            }
+        });
+        var upload = multer({ storage : storage}).single('recipePhoto');
+
+        upload(req,res,function(err) {
+            Recipe.findById(id)
+                .then(recipe => {
+                    recipe.picture = req.body.recipePhotoName;
+                    recipe.save((err) => {
+                        res.redirect('/');
+                    });
+                });
+        });
     },
 
     deleteGet: (req, res) => {
