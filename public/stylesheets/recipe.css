@@ -33,3 +33,7 @@
 .centeredText{
     text-align: center;
 }
+.recipe-grid-image{
+    width: 200px;
+    height: 200px;
+}

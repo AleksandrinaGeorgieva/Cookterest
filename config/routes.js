@@ -25,6 +25,9 @@ module.exports = (app) => {
 
     app.get('/recipe/details/:id', recipeController.details);
 
+    app.get('/recipe/upload_photo/:id', recipeController.uploadPhotoGet);
+    app.post('/recipe/upload_photo/:id', recipeController.uploadPhoto);
+
     app.get('/recipe/edit/:id', recipeController.editGet);
     app.post('/recipe/edit/:id', recipeController.editPost);
 

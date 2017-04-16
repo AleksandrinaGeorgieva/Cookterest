@@ -1,0 +1,28 @@
+<div class="well">
+    <form id        =  "uploadForm"
+          enctype   =  "multipart/form-data"
+          action    =  "/recipe/upload_photo/{{recipe.id}}"
+          method    =  "post"
+          class="form-horizontal"
+    >
+        <input type="text" id="recipePhotoName" name="recipePhotoName" hidden/>
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="uploadPicture">Upload Pictures</label>
+            <div class="col-sm-4 ">
+                <input type="file" name="recipePhoto" id="upload"/>
+                <br>
+                <input type="submit" value="Upload Image" name="submit" class="btn btn-success">
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    $('#upload').change(function() {
+        var filename = $(this).val();
+        var lastIndex = filename.lastIndexOf("\\");
+        if (lastIndex >= 0) {
+            filename = filename.substring(lastIndex + 1);
+        }
+        $('#recipePhotoName').val(filename);
+    });
+</script>

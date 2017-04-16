@@ -48,7 +48,7 @@ module.exports = {
         Recipe.create(recipeArgs)
             .then(recipe => {
                 recipe.prepareInsert();
-                res.redirect('/recipe/details/' + recipe.id);
+                res.redirect('/recipe/upload_photo/' + recipe.id);
             });
        /* Recipe.findById(recipeArgs.id)
             .populate('author')
@@ -169,6 +169,20 @@ module.exports = {
         }
     },
 
+    uploadPhotoGet: (req, res) => {
+        let id = req.params.id;
+
+        if(!req.isAuthenticated()){
+            let returnUrl = '/recipe/upload_photo/${id}';
+            req.session.returnUrl = returnUrl;
+
+            res.redirect('/user/login');
+            return;
+        }
+
+        res.render('recipe/upload_photo', {recipe: {id: id}});
+    },
+
     uploadPhoto: (req, res) => {
         let id = req.params.id;
         var multer = require('multer');
@@ -188,7 +202,7 @@ module.exports = {
                 .then(recipe => {
                     recipe.picture = req.body.recipePhotoName;
                     recipe.save((err) => {
-                        res.redirect('/');
+                        res.redirect('/recipe/details/' + recipe.id);
                     });
                 });
         });
