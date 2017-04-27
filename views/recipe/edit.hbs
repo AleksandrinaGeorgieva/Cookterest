@@ -24,7 +24,7 @@
                             <label class="col-sm-3 control-label" for="recipeIngredientName">Name</label>
                         </div>
                         {{#each ingredients}}
-                        <div class="row" id="ingredient-{{@index}}"  >
+                        <div class="row ingredient-hover" id="ingredient-{{@index}}"  >
                             <div class="col-sm-3">
                                 <textarea class="form-control" id="recipeIngQnty" rows="1" name="ingredients[{{@index}}][quantity]" required>{{this.quantity}}</textarea>
                             </div>
@@ -34,9 +34,12 @@
                             <div class="col-sm-4">
                                 <textarea class="form-control" id="recipeIngName" rows="1" name="ingredients[{{@index}}][name]" required>{{this.name}}</textarea>
                             </div>
+                            <div class="col-sm-2 btn-box">
+                                <button type="button" onclick="removeIng(this)" class="btn btn-danger remove-button">Remove</button>
+                            </div>
                         </div>
                         {{/each}}
-                        <button id="btnAddIng" type="button" class="btn btn-primary btn-sm" lineCount="{{ingredients.length}}">Add +</button>
+                        <button id="btnAddIng" type="button" class="btn btn-primary btn-sm" lineCount="{{ingredients.length}}">Add</button>
                     </div>
                 </div>
                 <div class="form-group">
@@ -106,7 +109,7 @@
             lineCount++;
 
             $("#btnAddIng").before(
-                    "<div class='row' id='ingredient-" + lineCount + "'>" +
+                    "<div class='row ingredient-hover' id='ingredient-" + lineCount + "'>" +
                     "<div class='col-sm-3'> " +
                     "<textarea class='form-control' rows='1' name='ingredients["+ lineCount +"][quantity]' required></textarea>" +
                     "</div>" +
@@ -116,6 +119,9 @@
                     "<div class='col-sm-4'>" +
                     "<textarea class='form-control' rows='1' name='ingredients["+ lineCount +"][name]' required></textarea>" +
                     "</div>" +
+                    "<div class='col-sm-2 btn-box'>"+
+                    "<button type='button' onclick='removeIng(this)'  class='btn btn-danger remove-button'>Remove</button>"+
+                    "</div>"+
                     "</div>");
 
             $(this).attr('lineCount', lineCount);

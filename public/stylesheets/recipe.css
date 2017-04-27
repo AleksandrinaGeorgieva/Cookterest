@@ -1,6 +1,17 @@
+.top-images-field{
+    text-align: center;
+}
 .top-image-recipe{
     display: inline-block;
-    text-align: center;
+}
+.btn-box{
+    vertical-align: middle;
+}
+.remove-button{
+    display: none;
+}
+.ingredient-hover:hover .remove-button{
+    display: block;
 }
 .bar-quickStats {
     border-radius: 3px;
