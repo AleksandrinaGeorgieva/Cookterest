@@ -144,7 +144,10 @@ module.exports = {
                 recipe.category = recipeArgs.category;
                 recipe.title = recipeArgs.title;
                 recipe.content = recipeArgs.content;
-                recipe.ingredients = recipeArgs.ingredients;
+                if (recipeArgs.ingredients === undefined){
+                    recipe.ingredients = {};
+                }
+                else recipe.ingredients = recipeArgs.ingredients;
                 recipe.nutrition = recipeArgs.nutrition;
                 recipe.directions = recipeArgs.directions;
                 recipe.prepTime = recipeArgs.prepTime;
