@@ -189,7 +189,7 @@ module.exports = {
 
     uploadPhoto: (req, res) => {
         let id = req.params.id;
-        var multer = require('multer');
+        var multer = require("multer");
 
         var storage =   multer.diskStorage({
             destination: function (req, file, callback) {
