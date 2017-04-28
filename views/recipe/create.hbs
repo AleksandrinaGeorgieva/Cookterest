@@ -27,7 +27,7 @@
                             <label class="col-sm-3 control-label" for="recipeIngredientName">Measure</label>
                             <label class="col-sm-3 control-label" for="recipeIngredientName">Name</label>
                         </div>
-                        <div class="row" id="ingredient-0">
+                        <div class="row  ingredient-hover" id="ingredient-0">
                             <div class="col-sm-3">
                                 <textarea class="form-control" id="recipeIngQnty" rows="1" name="ingredients[0][quantity]" required></textarea>
                             </div>
@@ -36,6 +36,9 @@
                             </div>
                             <div class="col-sm-4">
                                 <textarea class="form-control" id="recipeIngName" rows="1" name="ingredients[0][name]" required></textarea>
+                            </div>
+                            <div class="col-sm-2 btn-box">
+                                <button type="button" onclick="removeIng(this)" class="btn btn-danger remove-button">Remove</button>
                             </div>
                         </div>
                         <button id="btnAddIng" type="button" class="btn btn-primary btn-sm" lineCount="0">Add +</button>
