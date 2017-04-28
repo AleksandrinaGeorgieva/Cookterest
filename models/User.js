@@ -10,6 +10,7 @@ let userSchema = mongoose.Schema(
         fullName: {type: String, required: true},
         picture: {type: String, required: false, default: 'default.jpeg'},
         recipes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'}],
+        favRecipes: [{type: mongoose.Schema.Types.ObjectId, ref: 'Recipe'}],
         roles: [{type: mongoose.Schema.Types.ObjectId, ref: 'Role'}],
         salt: {type: String, required: true}
     }

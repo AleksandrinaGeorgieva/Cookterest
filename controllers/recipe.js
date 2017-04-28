@@ -1,5 +1,6 @@
 const Recipe = require('mongoose').model('Recipe');
 const Category = require('mongoose').model('Category');
+const User = require('mongoose').model('User');
 
 module.exports = {
     createGet: (req, res) => {
@@ -244,5 +245,22 @@ module.exports = {
                 recipe.prepareDelete();
                 res.redirect('/');
             })
+    },
+
+    addToFavourites: (req,res) => {
+        let id = req.params.id;
+
+        User.findOne({email: req.user.email}).then(user => {
+            let index = user.favRecipes.indexOf(id);
+            if (index > -1){
+                user.favRecipes.splice(index,1);
+                user.save();
+            }
+            else {
+                user.favRecipes.push(id);
+                user.save();
+            }
+        })
+        res.redirect('/recipe/details/' + id);
     }
 };

@@ -24,6 +24,7 @@ module.exports = (app) => {
     app.post('/recipe/create', recipeController.createPost);
 
     app.get('/recipe/details/:id', recipeController.details);
+    app.post('/recipe/details/:id', recipeController.addToFavourites);
 
     app.get('/recipe/upload_photo/:id', recipeController.uploadPhotoGet);
     app.post('/recipe/upload_photo/:id', recipeController.uploadPhoto);
